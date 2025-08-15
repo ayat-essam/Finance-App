@@ -12,5 +12,10 @@ class AppTheme {
       titleLarge: AppStyle.primaryHeadLineStyle,
       titleMedium: AppStyle.subTitle,
     ),
+    buttonTheme: ButtonThemeData(
+      disabledColor: AppColor.seconderyColor,
+      buttonColor: AppColor.primaryColor
+
+    )
   );
 }

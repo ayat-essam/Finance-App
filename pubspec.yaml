@@ -14,6 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.9.3
+  go_router: ^15.1.2
 
   cupertino_icons: ^1.0.8
 
@@ -55,7 +56,11 @@ flutter:
   fonts:
      - family: Urbanist
        fonts:
-         - asset: assets/fonts/
+         - asset: assets/fonts/Urbanist-Bold.ttf
+         - asset: assets/fonts/Urbanist-Medium.ttf
+         - asset: assets/fonts/Urbanist-Regular.ttf
+
+
 
            style: italic
   #   - family: Trajan Pro

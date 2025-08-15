@@ -30,4 +30,10 @@ class AppStyle{
     fontSize: 16.sp
   );
 
+  static TextStyle black15 = TextStyle(
+      color: AppColor.black,
+      fontWeight: FontWeight.bold,
+      fontSize: 15.sp
+  );
+
 }
