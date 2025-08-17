@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatelessWidget {
+  final TextEditingController? controller;
   final String? hintText;
   final TextInputType? keyboardType;
   final Widget? icon;
@@ -12,6 +13,7 @@ class CustomTextField extends StatelessWidget {
   final bool? isPassword;
   final bool? onPress;
   const CustomTextField ({
+    this.controller,
     required this.isPassword,
     this.onPress,
     this.keyboardType,
