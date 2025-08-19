@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../core/styling/app_colors.dart';
+import '../styling/app_colors.dart';
 
 class SocialMediaIcons extends StatelessWidget {
 

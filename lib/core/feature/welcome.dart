@@ -1,20 +1,22 @@
 import 'package:finance/core/styling/app_colors.dart';
 import 'package:finance/core/styling/app_style.dart';
-import 'package:finance/main.dart';
-import 'package:finance/widgets/primary%20Button%20Widget.dart';
-import 'package:finance/widgets/register.dart';
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'package:gap/gap.dart';
+import 'Screens/login.dart';
+import '../widgets/primary Button Widget.dart';
+import 'Screens/register.dart';
 
-class HomePage extends StatefulWidget {
-  static const String routeName = 'home';
+class Welcome extends StatefulWidget {
+  static const String routeName = 'welcome';
+
+  const Welcome({super.key});
 
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<Welcome> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<Welcome> {
   bool isPassword = true;
   @override
   Widget build(BuildContext context) {
@@ -27,11 +29,11 @@ class _HomePageState extends State<HomePage> {
               height: MediaQuery.of(context).size.height * 0.6,
               width: double.infinity,
               child: Image.asset(
-                "assets/image/loginImg.jpg",
-                fit: BoxFit.cover,
+                "assets/image/img.png",
+                fit: BoxFit.fill,
               ),
             ),
-            const SizedBox(height: 15 ),
+            const Gap(15),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children:[ PrimaryButton(
@@ -44,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
 
-             SizedBox(height: 15),
+             const Gap(15),
             PrimaryButton(
               height: 56,
               textButton: 'Register',
@@ -53,27 +55,12 @@ class _HomePageState extends State<HomePage> {
               onPress: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Register()),
+                  MaterialPageRoute(builder: (context) =>  Register()),
                 );
               },
 
             ),
-             const SizedBox(height: 15),
-            // CustomTextField(
-            //   isPassword: isPassword,
-            //   hintText: 'Enter Your Password',
-            //   icon: IconButton(
-            //     onPressed: () {
-            //       setState(() {
-            //         isPassword = !isPassword;
-            //       });
-            //     },
-            //     icon: Icon(
-            //       isPassword ? Icons.visibility_off_outlined : Icons.visibility,
-            //     ),
-            //   ),
-            // ),
-                SizedBox(height: 20,),
+             const Gap(20),
                 Text("Continue As Geust!",
                   style: AppStyle.black15.copyWith(color: Color(0xff202955),
                       decoration: TextDecoration.underline )

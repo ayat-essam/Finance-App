@@ -5,14 +5,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
   final String? hintText;
   final TextInputType? keyboardType;
   final Widget? icon;
   final double? width;
   final double? padding;
   final bool? isPassword;
-  final bool? onPress;
+  final void Function()?  onPress;
   const CustomTextField ({
+    this.validator,
     this.controller,
     required this.isPassword,
     this.onPress,
@@ -21,13 +23,16 @@ class CustomTextField extends StatelessWidget {
     this.hintText,
     this.icon,
     this.padding,
-    super.key});
+    super.key, });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width ?? 331.w ,
       child: TextFormField(
+        onTap: onPress ,
+        controller: controller,
+        validator: validator,
         keyboardType: keyboardType?? TextInputType.number,
         obscureText: isPassword ?? false,
         autofocus: false,
@@ -41,15 +46,21 @@ class CustomTextField extends StatelessWidget {
           ),
           contentPadding:  EdgeInsets.symmetric(horizontal: 18.sp),
           filled: true,
-          fillColor: Color(0xffF7F8F9),
+          fillColor: const Color(0xffF7F8F9),
           suffixIcon: icon ,
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(
               color: Color(0xffE8ECF4),
               width: 1,
 
             ),
-          ) ,
+          ),
+          errorBorder : OutlineInputBorder(
+            borderSide: BorderSide(
+                color: Color(AppColor.primaryColor.red))) ,
+           focusedErrorBorder: OutlineInputBorder(
+             borderSide: BorderSide(
+                 color: Color(AppColor.primaryColor.red))),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
            color: Color(AppColor.primaryColor.blue),
