@@ -1,3 +1,6 @@
+import 'package:finance/widgets/OTP%20Vercation.dart';
+import 'package:finance/widgets/creatNewPass.dart';
+import 'package:finance/widgets/forotPassword.dart';
 import 'package:finance/widgets/home.dart';
 import 'package:finance/widgets/login.dart';
 import 'package:finance/widgets/register.dart';
@@ -18,14 +21,16 @@ class MyApp extends StatelessWidget {
         designSize: const Size(375, 812),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute:HomePage.routeName ,
+          initialRoute:Createnewpass.routName ,
           routes: {
             Register.routeName: (context) => Register(),
-        Login.routeName: (_) => Login(),
-        HomePage.routeName: (context) => HomePage()
-
-
+            Login.routeName: (_) => Login(),
+            ForgotPassword.routeName: (context) => ForgotPassword(),
+            Createnewpass.routName: (context) => Createnewpass(),
+            OTPVerification.routName: (context) => OTPVerification(),
+            HomePage.routeName: (context) => HomePage()
         },
+
           home:  HomePage(),
         )
 

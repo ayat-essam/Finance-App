@@ -1,9 +1,9 @@
 import 'package:finance/core/styling/app_colors.dart';
 import 'package:finance/core/styling/app_style.dart';
-import 'package:finance/main.dart';
 import 'package:finance/widgets/primary%20Button%20Widget.dart';
 import 'package:finance/widgets/register.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'login.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,11 +27,11 @@ class _HomePageState extends State<HomePage> {
               height: MediaQuery.of(context).size.height * 0.6,
               width: double.infinity,
               child: Image.asset(
-                "assets/image/loginImg.jpg",
-                fit: BoxFit.cover,
+                "assets/image/img.png",
+                fit: BoxFit.fill,
               ),
             ),
-            const SizedBox(height: 15 ),
+            const Gap(15),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children:[ PrimaryButton(
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
 
-             SizedBox(height: 15),
+             Gap(15),
             PrimaryButton(
               height: 56,
               textButton: 'Register',
@@ -58,21 +58,7 @@ class _HomePageState extends State<HomePage> {
               },
 
             ),
-             const SizedBox(height: 15),
-            // CustomTextField(
-            //   isPassword: isPassword,
-            //   hintText: 'Enter Your Password',
-            //   icon: IconButton(
-            //     onPressed: () {
-            //       setState(() {
-            //         isPassword = !isPassword;
-            //       });
-            //     },
-            //     icon: Icon(
-            //       isPassword ? Icons.visibility_off_outlined : Icons.visibility,
-            //     ),
-            //   ),
-            // ),
+             const Gap(15),
                 SizedBox(height: 20,),
                 Text("Continue As Geust!",
                   style: AppStyle.black15.copyWith(color: Color(0xff202955),

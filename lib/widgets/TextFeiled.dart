@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
   final String? hintText;
   final TextInputType? keyboardType;
   final Widget? icon;
@@ -13,6 +14,7 @@ class CustomTextField extends StatelessWidget {
   final bool? isPassword;
   final bool? onPress;
   const CustomTextField ({
+    this.validator,
     this.controller,
     required this.isPassword,
     this.onPress,
@@ -28,6 +30,8 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: width ?? 331.w ,
       child: TextFormField(
+        controller: controller,
+        validator: validator,
         keyboardType: keyboardType?? TextInputType.number,
         obscureText: isPassword ?? false,
         autofocus: false,
@@ -49,7 +53,13 @@ class CustomTextField extends StatelessWidget {
               width: 1,
 
             ),
-          ) ,
+          ),
+          errorBorder : OutlineInputBorder(
+            borderSide: BorderSide(
+                color: Color(AppColor.primaryColor.red))) ,
+           focusedErrorBorder: OutlineInputBorder(
+             borderSide: BorderSide(
+                 color: Color(AppColor.primaryColor.red))),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
            color: Color(AppColor.primaryColor.blue),

@@ -1,5 +1,6 @@
 import 'package:finance/core/styling/app_colors.dart';
 import 'package:finance/core/styling/app_style.dart';
+import 'package:finance/widgets/Arrow%20widget.dart';
 import 'package:finance/widgets/forotPassword.dart';
 import 'package:finance/widgets/home.dart';
 import 'package:finance/widgets/primary%20Button%20Widget.dart';
@@ -14,14 +15,26 @@ import 'TextFeiled.dart';
 
 class Login extends StatefulWidget {
   static const String routeName = 'login';
-
   const Login({super.key});
+
+
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
+  final formKey = GlobalKey<FormState>();
+  late TextEditingController email = TextEditingController();
+  late TextEditingController password = TextEditingController();
+  @override
+  void initState(){
+    super.initState();
+   email = TextEditingController();
+   password = TextEditingController();
+
+  }
+
   bool isPassword = true;
   @override
   Widget build(BuildContext context) {
@@ -30,120 +43,132 @@ class _LoginState extends State<Login> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: Container(
-          padding: const EdgeInsets.all(0.9),
-          margin: const EdgeInsets.all(0.9),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: AppColor.offWhite
-          ),
-          child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              }, icon: const Icon(
-            Icons.arrow_back_ios_new_sharp,color: Colors.blueAccent,)),
-        ),
+        leading: const ArrowWidget(),
       ),
       body:  Padding(
         padding: const EdgeInsets.all(16.0),
-
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: ListView(
-                children:[
-                  Text("Welcome Back !👋 \n Again !",
-                style: AppStyle.primaryHeadLineStyle,),
-            const Gap(20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const CustomTextField(
-                    isPassword: true,
-                  hintText: "Please Enter Your e_mail",
-                  keyboardType: TextInputType.text,
-
-                ),
-                const Gap(20),
-                CustomTextField(
-                    isPassword: isPassword,
-                keyboardType: TextInputType.visiblePassword,
-                  hintText: "Please Enter Your Password",
-                  icon: IconButton(
-                      onPressed: (){
-                        setState(() {
-                          isPassword = !isPassword;
-                        });
-                      },
-                      icon: Icon( isPassword ?
-                        Icons.visibility_off_outlined : Icons.visibility_outlined
-                      )),
-                ),
-                const Gap(5),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: InkWell(
-                    onTap: (){
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const ForgotPassword()));
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: ListView(
+                  children:[
+                    Text("Welcome Back !👋 \n Again !",
+                  style: AppStyle.primaryHeadLineStyle,),
+              const Gap(20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CustomTextField(
+                    validator: (value) {
+                    if(value!.isEmpty){
+                      return ' please enter email';
+                    }
+                    if(!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)){
+                      return 'please enter email like *****@gmail.com';
+                    }
                     },
-                    child: Text("Forgot a Password?",
-                    style: AppStyle.subTitle.copyWith(fontSize: 15 ,decoration: TextDecoration.underline)),
-                ),
-                ),
+                    controller: email,
+                      isPassword: false,
+                    hintText: "Please Enter Your e_mail",
+                    keyboardType: TextInputType.text,
 
-                 const Gap(25),
-                PrimaryButton(
-                    onPress: (){},
-                textButton: "Login",
-                ),
-                const Gap(25),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        thickness: 1,
-                        color: AppColor.gray,
-
+          
+                  ),
+                  const Gap(20),
+                  CustomTextField(
+                    validator: (value) {
+                    if(value!.length < 8){
+                      return " sorry your mail must be at least 8 characters";
+                    }
+                    } ,
+                    controller: password,
+                      isPassword: isPassword,
+                  keyboardType: TextInputType.visiblePassword,
+                    hintText: "Please Enter Your Password",
+                    icon: IconButton(
+                        onPressed: (){
+                          setState(() {
+                            isPassword = !isPassword;
+                          });
+                        },
+                        icon: Icon( isPassword ?
+                          Icons.visibility_off_outlined : Icons.visibility_outlined
+                        )),
+                  ),
+                  const Gap(5),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => const ForgotPassword()));
+                      },
+                      child: Text("Forgot a Password?",
+                      style: AppStyle.subTitle.copyWith(fontSize: 15 ,decoration: TextDecoration.underline)),
+                  ),
+                  ),
+          
+                   const Gap(25),
+                  PrimaryButton(
+                      onPress: (){
+                        if(formKey.currentState!.validate()){
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Login Success ✅')) );
+                        }
+                      },
+                  textButton: "Login",
+                  ),
+                  const Gap(25),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 1,
+                          color: AppColor.gray,
+          
+                        ),
                       ),
-                    ),
-                    Padding(
-                        padding:const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text("Or Login With",
-                      style: AppStyle.subTitle ,),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        thickness: 1,
-                        color: AppColor.gray,
+                      Padding(
+                          padding:const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text("Or Login With",
+                        style: AppStyle.subTitle ,),
                       ),
-                    ),
-      ]
-          ),
-                    const Gap(15),
-                    const Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SocialMediaIcons(imageIcon: "assets/image/facebook_ic.png",),
-                           Gap(15),
-                        SocialMediaIcons(
-                       imageIcon: "assets/image/google_ic.png",),
-                        Gap(15),
-                        SocialMediaIcons(
-                            imageIcon: "assets/image/cib_apple.png", ),
-                  ],
+                      Expanded(
+                        child: Divider(
+                          thickness: 1,
+                          color: AppColor.gray,
+                        ),
+                      ),
+                ]
+            ),
+                      const Gap(15),
+                      const Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SocialMediaIcons(imageIcon: "assets/image/facebook_ic.png",),
+                             Gap(15),
+                          SocialMediaIcons(
+                         imageIcon: "assets/image/google_ic.png",),
+                          Gap(15),
+                          SocialMediaIcons(
+                              imageIcon: "assets/image/cib_apple.png", ),
+                    ],
+                  ),
+                ],
+              )
+            ]
+          
+                )
+          
                 ),
-              ],
-            )
-          ]
-
-      )
-
-      ),
-
-    ]
-    )
+          
+              ]
+              ),
+        )
     ),
         bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 16, top: 8),
