@@ -1,4 +1,4 @@
-# 💳 X-Card Finance App
+# Finance App
 
 A modern mobile finance application built with **Flutter**, designed to manage virtual cards, track transactions, and provide a seamless banking experience.
 
