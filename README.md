@@ -5,18 +5,9 @@ A modern mobile finance application built with **Flutter**, designed to manage v
 ---
 
 ## 📱 Screenshots
+![Finance App](assets/image/AuthScr.png)
+![Finance App](assets/image/card, profile featurs.png)
 
-| Welcome | Register | OTP Verification |
-|--------|----------|-----------------|
-| Login & Register Screen | Create a new account | Email verification |
-
-| Home Dashboard | All Cards | Statistics |
-|---------------|-----------|-----------|
-| Quick actions & card overview | Manage your cards | Income & Outcome charts |
-
-| My Profile |
-|-----------|
-| View & edit personal info |
 
 ---
 
