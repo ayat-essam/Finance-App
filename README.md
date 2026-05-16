@@ -7,8 +7,6 @@ A modern mobile finance application built with **Flutter**, designed to manage v
 ## 📱 Screenshots
 ![Finance App](assets/image/AuthScr.png)
 ![Finance App](assets/image/card, profile featurs.png)
-
-
 ---
 
 ## ✨ Features
